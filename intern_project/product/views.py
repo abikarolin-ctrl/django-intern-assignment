@@ -1,19 +1,10 @@
-from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from .models import Product
+from .serializers import ProductSerializer
 
+@api_view(['GET'])
 def product_list(request):
     products = Product.objects.all()
-
-    data = []
-    for product in products:
-        data.append({
-            "id": product.id,
-            "name": product.name,
-            "price": product.price,
-            "description": product.description
-        })
-
-    return JsonResponse({
-        "status": "success",
-        "data": data
-    })
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)

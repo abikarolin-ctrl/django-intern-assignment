@@ -20,14 +20,14 @@ from django.urls import path, include
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("Django Internship Project Running")
+    return HttpResponse("Django Internship Project API is running")
 
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
     path('api/product/', include('product.urls')),
-    path('api/vendor/', include('vendor.urls')),
     path('api/course/', include('course.urls')),
+    path('api/vendor/', include('vendor.urls')),
     path('api/certification/', include('certification.urls')),
     path('api/product-course/', include('product_course_mapping.urls')),
     path('api/vendor-product/', include('vendor_product_mapping.urls')),
